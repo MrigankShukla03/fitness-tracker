@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+    id="WebApp_ID" version="3.1">
+
+    <display-name>fitness-tracker</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+<!-- 
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.fitness.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.fitness.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.fitness.controller.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WorkoutServlet</servlet-name>
+        <servlet-class>com.fitness.controller.WorkoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NutritionServlet</servlet-name>
+        <servlet-class>com.fitness.controller.NutritionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProgressServlet</servlet-name>
+        <servlet-class>com.fitness.controller.ProgressServlet</servlet-class>
+    </servlet> -->
+    <!-- Add servlet mappings for other servlets -->
+
+    <!-- <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkoutServlet</servlet-name>
+        <url-pattern>/addWorkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NutritionServlet</servlet-name>
+        <url-pattern>/addNutrition</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProgressServlet</servlet-name>
+        <url-pattern>/progress</url-pattern>
+    </servlet-mapping> -->
+    <!-- Add servlet mappings for other servlets -->
+
+</web-app>
