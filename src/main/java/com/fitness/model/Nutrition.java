@@ -3,14 +3,17 @@ package com.fitness.model;
 public class Nutrition {
     private String foodName;
     private int calories;
+    private String date;
     // Add other nutrition details as needed
+    
+    public Nutrition(String foodName, int calories, String date) {
+		super();
+		this.foodName = foodName;
+		this.calories = calories;
+		this.date = date;
+	}
 
-    public Nutrition(String foodName, int calories) {
-        this.foodName = foodName;
-        this.calories = calories;
-    }
-
-    public String getFoodName() {
+	public String getFoodName() {
         return foodName;
     }
 
@@ -25,5 +28,13 @@ public class Nutrition {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+    
+    public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
     // Add getters and setters for other nutrition details
 }

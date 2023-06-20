@@ -27,7 +27,9 @@
 
             <label for="calories">Calories:</label>
             <input type="number" name="calories" id="calories" required>
-
+            
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
             <!-- Add other input fields for nutrition details as needed -->
 
             <input type="submit" value="Add Nutrition">
@@ -38,12 +40,14 @@
             <tr>
                 <th>Food Name</th>
                 <th>Calories</th>
+                <th>Date</th>
                 <!-- Add other table headers for nutrition details as needed -->
             </tr>
             <% for (com.fitness.model.Nutrition nutritionEntry : (List<com.fitness.model.Nutrition>) request.getAttribute("nutritionEntries")) { %>
                 <tr>
                     <td><%= nutritionEntry.getFoodName() %></td>
                     <td><%= nutritionEntry.getCalories() %></td>
+                    <td><%= nutritionEntry.getDate() %></td>
                     <!-- Add other table cells for nutrition details as needed -->
                 </tr>
             <% } %>

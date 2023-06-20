@@ -1,10 +1,8 @@
 package com.fitness.controller;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,11 +29,13 @@ public class DashboardServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String date = request.getParameter("date");
 		String stepCounts = request.getParameter("stepCounts");
 		String weight = request.getParameter("weight");
 		String height = request.getParameter("height");
 		String sleepDuration = request.getParameter("sleepDuration");
 		String waterIntake = request.getParameter("waterIntake");
+		
 
 		if (stepCounts.isEmpty() || weight.isEmpty() || height.isEmpty() || sleepDuration.isEmpty() || waterIntake.isEmpty()) {
 			request.setAttribute("errorMessage", "Please enter all the details!");
@@ -64,10 +64,10 @@ public class DashboardServlet extends HttpServlet {
 			request.setAttribute("stepCounts", steps);
 			request.setAttribute("sleepDuration", sleepDurationValue);
 			request.setAttribute("waterIntake", waterIntakeValue);
-
+			request.setAttribute("date", date);
 			// Save the data into the database
 			User user = (User) request.getSession().getAttribute("user");
-			saveUserData(user.getUsername(), steps, weightValue, heightValue, sleepDurationValue, waterIntakeValue, bmi, caloriesBurned, distanceWalked);
+			saveUserData(user.getUsername(), steps, weightValue, heightValue, sleepDurationValue, waterIntakeValue, bmi, caloriesBurned, distanceWalked, date);
 
 		} catch (NumberFormatException e) {
 			request.setAttribute("errorMessage", "Invalid input format!");
@@ -91,7 +91,7 @@ public class DashboardServlet extends HttpServlet {
 	}
 
 	private void saveUserData(String username, int steps, double weight, double height, double sleepDuration,
-			double waterIntake, double bmi, double caloriesBurned, double distanceWalked) {
+			double waterIntake, double bmi, double caloriesBurned, double distanceWalked, String date) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 
@@ -100,7 +100,7 @@ public class DashboardServlet extends HttpServlet {
 			connection = DBUtil.getConnection();
 
 			// Prepare the SQL statement
-			String sql = "INSERT INTO userData (username, steps, weight, height, sleepDuration, waterIntake, bmi, caloriesBurned, distanceWalked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO userData (username, steps, weight, height, sleepDuration, waterIntake, bmi, caloriesBurned, distanceWalked, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			statement = connection.prepareStatement(sql);
 
 			// Set the parameters
@@ -113,6 +113,7 @@ public class DashboardServlet extends HttpServlet {
 			statement.setDouble(7, bmi);
 			statement.setDouble(8, caloriesBurned);
 			statement.setDouble(9, distanceWalked);
+			statement.setString(10, date);
 
 			// Execute the statement
 			statement.executeUpdate();

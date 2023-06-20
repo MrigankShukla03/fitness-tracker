@@ -33,6 +33,7 @@
 
             <section>
                 <h2>Progress</h2>
+                <p><strong>Date:</strong> ${date}</p>
                 <p><strong>Steps Count:</strong> ${steps}</p>
 				<p><strong>Calories Burned:</strong> ${caloriesBurned}</p>
 				<p><strong>Distance Walked:</strong> ${distanceWalked} Kms</p>
@@ -51,6 +52,7 @@
                             <th>Name</th>
                             <th>Duration</th>
                             <th>Calories Burned</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +61,7 @@
 		                    <td><%= workout.getWorkoutName() %> </td>
 		                    <td><%= workout.getDuration() %> </td>
 		                    <td><%= workout.getCaloriesBurned() %> </td>
+		                    <td><%= workout.getDate() %> </td>
 		                </tr>
 		            	<% } %>
                     </tbody>
@@ -71,6 +74,7 @@
                         <tr>
                             <th>Food Name</th>
                             <th>Calories Intake</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +82,7 @@
 		                <tr>
 		                    <td><%= nutritionEntry.getFoodName() %></td>
 		                    <td><%= nutritionEntry.getCalories() %></td>
+		                    <td><%= nutritionEntry.getDate() %></td>
 		                </tr>
 		            	<% } %>
                     </tbody>

@@ -52,9 +52,10 @@ public class NutritionServlet extends HttpServlet {
 		// Retrieve nutrition details from the form
 		String foodName = request.getParameter("foodName");
 		int calories = Integer.parseInt(request.getParameter("calories"));
+		String date = request.getParameter("date");
 
 		// Create a new Nutrition object
-		Nutrition nutritionEntry = new Nutrition(foodName, calories);
+		Nutrition nutritionEntry = new Nutrition(foodName, calories, date);
 
 		// Add the new nutrition entry to the list of existing nutrition entries for the user
 		addNutritionEntry(user, nutritionEntry);
@@ -75,7 +76,7 @@ public class NutritionServlet extends HttpServlet {
 			conn = DBUtil.getConnection();
 
 			// Retrieve nutrition entries for the user from the database
-			String query = "SELECT foodName, caloriesIntake FROM nutrition WHERE username = ?";
+			String query = "SELECT foodName, caloriesIntake, date FROM nutrition WHERE username = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, user.getUsername());
 			rs = stmt.executeQuery();
@@ -83,9 +84,10 @@ public class NutritionServlet extends HttpServlet {
 			while (rs.next()) {
 				String foodName = rs.getString("foodName");
 				int calories = rs.getInt("caloriesIntake");
+				String date = rs.getString("date");
 
 				// Create a Nutrition object and add it to the list
-				Nutrition nutritionEntry = new Nutrition(foodName, calories);
+				Nutrition nutritionEntry = new Nutrition(foodName, calories, date);
 				nutritionEntries.add(nutritionEntry);
 			}
 		} catch (SQLException e) {
@@ -97,7 +99,6 @@ public class NutritionServlet extends HttpServlet {
 			DBUtil.closeStatement(stmt);
 			DBUtil.closeConnection(conn);
 		}
-
 		return nutritionEntries;
 	}
 
@@ -110,11 +111,12 @@ public class NutritionServlet extends HttpServlet {
 			conn = DBUtil.getConnection();
 
 			// Insert the new nutrition entry into the database
-			String query = "INSERT INTO nutrition (username, foodName, caloriesIntake) VALUES (?, ?, ?)";
+			String query = "INSERT INTO nutrition (username, foodName, caloriesIntake, date) VALUES (?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, nutritionEntry.getFoodName());
 			stmt.setInt(3, nutritionEntry.getCalories());
+			stmt.setString(4, nutritionEntry.getDate());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			// Handle any database errors

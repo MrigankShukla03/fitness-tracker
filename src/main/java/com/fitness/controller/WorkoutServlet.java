@@ -53,6 +53,7 @@ public class WorkoutServlet extends HttpServlet {
 		String workoutName = request.getParameter("name");
 		String duration = request.getParameter("duration");
 		String caloriesBurned = request.getParameter("caloriesBurned");
+		String date = request.getParameter("date");
 
 		// Validate workout details
 		if (workoutName.isEmpty() || duration.isEmpty() || caloriesBurned.isEmpty()) {
@@ -63,7 +64,7 @@ public class WorkoutServlet extends HttpServlet {
 
 		try {
 			// Create a new Workout object
-			Workout workout = new Workout(workoutName, duration, caloriesBurned);
+			Workout workout = new Workout(workoutName, duration, caloriesBurned, date);
 
 			// Add the new workout to the list of existing workouts for the user
 			addWorkout(user, workout);
@@ -89,7 +90,7 @@ public class WorkoutServlet extends HttpServlet {
 			conn = DBUtil.getConnection();
 
 			// Retrieve workouts for the user from the database
-			String query = "SELECT workoutName, duration, caloriesBurned FROM workouts WHERE username = ?";
+			String query = "SELECT workoutName, duration, caloriesBurned, date FROM workouts WHERE username = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, user.getUsername());
 			rs = stmt.executeQuery();
@@ -98,9 +99,10 @@ public class WorkoutServlet extends HttpServlet {
 				String name = rs.getString("workoutName");
 				String duration = rs.getString("duration");
 				String caloriesBurned = rs.getString("caloriesBurned");
+				String date = rs.getString("date");
 
 				// Create a Workout object and add it to the list
-				Workout workout = new Workout(name, duration, caloriesBurned);
+				Workout workout = new Workout(name, duration, caloriesBurned, date);
 				workouts.add(workout);
 			}
 		} catch (SQLException e) {
@@ -112,7 +114,6 @@ public class WorkoutServlet extends HttpServlet {
 			DBUtil.closeStatement(stmt);
 			DBUtil.closeConnection(conn);
 		}
-
 		return workouts;
 	}
 
@@ -125,12 +126,13 @@ public class WorkoutServlet extends HttpServlet {
 			conn = DBUtil.getConnection();
 
 			// Insert the new workout into the database
-			String query = "INSERT INTO workouts (username, workoutName, duration, caloriesBurned) VALUES (?, ?, ?, ?)";
+			String query = "INSERT INTO workouts (username, workoutName, duration, caloriesBurned, date) VALUES (?, ?, ?, ?, ?)";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, workout.getWorkoutName());
 			stmt.setString(3, workout.getDuration());
 			stmt.setString(4, workout.getCaloriesBurned());
+			stmt.setString(5, workout.getDate());
 			stmt.executeUpdate();
 		} finally {
 			// Close the resources

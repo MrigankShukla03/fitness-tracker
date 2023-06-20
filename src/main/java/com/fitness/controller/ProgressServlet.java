@@ -54,7 +54,7 @@ public class ProgressServlet extends HttpServlet {
 			request.setAttribute("user", user);
 
 			// Retrieve user details from userData table
-			String userDataQuery = "SELECT steps, height, weight, bmi, caloriesBurned, distanceWalked, sleepDuration, waterIntake FROM userData WHERE username = ?";
+			String userDataQuery = "SELECT steps, height, weight, bmi, caloriesBurned, distanceWalked, sleepDuration, waterIntake, date FROM userData WHERE username = ?";
 			stmt = conn.prepareStatement(userDataQuery);
 			stmt.setString(1, user.getUsername());
 			rs = stmt.executeQuery();
@@ -69,6 +69,7 @@ public class ProgressServlet extends HttpServlet {
 				request.setAttribute("distanceWalked", rs.getDouble("distanceWalked"));
 				request.setAttribute("sleepDuration", rs.getDouble("sleepDuration"));
 				request.setAttribute("waterIntake", rs.getDouble("waterIntake"));
+				request.setAttribute("date", rs.getString("date"));
 			}
 			// Set the workout history as an attribute to be displayed in the JSP
 			request.setAttribute("workouts", workouts);

@@ -39,9 +39,13 @@
     <main class="dashboard">
     <div class="formBoard">
     <form action="dashboard" method="post">
-		<% if (request.getAttribute("errorMessage") != null) { %>
-           <p class="error"><%= request.getAttribute("errorMessage") %></p>
-       	<% } %>
+    	<div class="date">
+			<% if (request.getAttribute("errorMessage") != null) { %>
+	          <p class="error"><%= request.getAttribute("errorMessage") %></p>
+	        <% } %>
+	       <input type="date" name="date" placeholder="Enter Date">
+	       <p>Date: ${date} </p>
+        </div>
         <div class="card" id="stepCount">
             <div class="card-header">
                 <h2>Step Counts</h2>
@@ -52,6 +56,7 @@
                 <p>Today's Steps: ${stepCounts}</p>
                 <p>Calories Burned: ${caloriesBurned}</p>
                 <p>Distance Walked: ${distanceWalked} Km</p>
+                
             </div>
         </div>
         <div class="card" id="bmi">

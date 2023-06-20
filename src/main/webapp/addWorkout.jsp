@@ -33,6 +33,9 @@
 
             <label for="caloriesBurned">Calories Burned:</label>
             <input type="number" name="caloriesBurned" id="caloriesBurned" required>
+            
+             <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
 
             <input type="submit" value="Add Workout">
         </form>
@@ -43,12 +46,14 @@
                 <th>Workout Name </th>
                 <th>Duration (minutes) </th>
                 <th>Calories Burned </th>
+                <th>Date </th>
             </tr>
             <% for (com.fitness.model.Workout workout : (List<com.fitness.model.Workout>) request.getAttribute("workouts")) { %>
                 <tr>
                     <td><%= workout.getWorkoutName() %> </td>
                     <td><%= workout.getDuration() %> </td>
                     <td><%= workout.getCaloriesBurned() %> </td>
+                    <td><%= workout.getDate() %> </td>
                 </tr>
             <% } %>
         </table>

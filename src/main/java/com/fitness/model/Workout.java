@@ -1,25 +1,24 @@
 package com.fitness.model;
 
-import java.util.Date;
-
 public class Workout {
 	private String workoutName;
 	private String duration;
-	private Date date;
+	private String date;
 	private String caloriesBurned;
 	// Add other workout details as needed
 
-	public Workout(String workoutName, String duration, Date date) {
+	public Workout(String workoutName, String duration, String date) {
 		this.workoutName = workoutName;
 		this.duration = duration;
 		this.date = date;
 	}
 
-	public Workout(String workoutName, String duration, String caloriesBurned) {
+	public Workout(String workoutName, String duration, String caloriesBurned, String date) {
 		super();
 		this.workoutName = workoutName;
 		this.duration = duration;
 		this.caloriesBurned = caloriesBurned;
+		this.date = date;
 	}
 
 	public String getWorkoutName() {
@@ -38,11 +37,11 @@ public class Workout {
 		this.duration = duration;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	// Add getters and setters for other workout details

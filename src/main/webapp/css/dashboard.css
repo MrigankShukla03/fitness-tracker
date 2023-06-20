@@ -139,6 +139,11 @@ input[type="submit"] {
 	height: 250px;
 }
 
+.date{
+	float:center;
+	text-align:center;
+}
+
 .submit-button {
     text-align: center;
     margin-top: 20px;
